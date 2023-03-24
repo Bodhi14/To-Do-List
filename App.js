@@ -1,9 +1,9 @@
-import { TouchableOpacity } from 'react-native';
+import { FlatList, TouchableOpacity } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { View, Text, StyleSheet } from 'react-native';
 import colors from './colors';
 import dummydata from './dummydata';
-import Header from './components/Header';
+import ToDoList from './components/ToDoList/ToDoList';
 
 export default function App() {
   return (
@@ -23,7 +23,20 @@ export default function App() {
       <Text style={styles.add}>Add List</Text>
       </View>
 
-      <View style={{height: 10}} />
+      <View style={{height: 10}}>
+        <FlatList 
+        data={dummydata} 
+        keyExtractor={(item) => (item.name)} 
+        horizontal={true} 
+        showsHorizontalScrollIndicator={false} 
+        renderItem={
+          (item) => {
+            return ( 
+              <ToDoList list={item} />
+            )
+          }
+        }/>
+      </View>
     </View>
   );
 }
