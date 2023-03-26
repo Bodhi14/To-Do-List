@@ -3,11 +3,24 @@ import React, {useState} from 'react';
 
 import { View, Text, StyleSheet, KeyboardAvoidingView, TouchableOpacity, TextInput } from 'react-native';
 import colors from '../../colors';
+import dummydata from '../../dummydata';
 
 const AddModalList = (props) => {
+    
+    const bgcolors = ["blue", "red", "green", "orange", "yellow" ];
 
     const [Name, setName] = useState("");
-    
+    const [Color, setColor] = useState(bgcolors[0]);
+
+    const createToDo = () => {
+        dummydata.push(
+            {
+            Name,
+            Color,
+            todos: [],
+            }
+        )
+    };
     
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding">
@@ -17,9 +30,20 @@ const AddModalList = (props) => {
     <View style={{alignSelf: "stretch", marginHorizontal: 32}}>
         <Text style={styles.title}>Create New Todo</Text>
 
-        <TextInput style={styles.input} placeholder="List Name" />
+        <TextInput style={styles.input} placeholder="List Name" onChangeText={text => setName(text)} />
 
-        <TouchableOpacity style={[styles.new, {backgroundColor: "blue"}]}>
+        <View style={styles.colorpicker}>
+            {
+                 bgcolors.map(
+                    (color) => {
+                        return (
+                        <TouchableOpacity key={color} style={[styles.colorselect, {backgroundColor: color}]} onPress={() => setColor(color)}></TouchableOpacity>
+                    );
+                }
+                   )
+            }
+        </View>
+        <TouchableOpacity style={[styles.new, {backgroundColor: "blue"}]} onPress={createToDo}>
             <Text style={{ color: colors.white, fontWeight: '600', fontSize: 20}}>Create</Text>
         </TouchableOpacity>
     </View>
@@ -49,7 +73,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: colors.blue,
     },
-
     title : {
         fontSize: 20,
         fontWeight: "800",
@@ -73,6 +96,14 @@ const styles = StyleSheet.create({
         borderRadius: 6,
         alignItems: 'center',
         
-    }
+    },
+    colorpicker: {
+         flexDirection: 'row',
+         justifyContent: 'center',
+         marginTop: 12
+    },
+    colorselect : {
+        alignItems: 'center'
+    },
 })
 export default AddModalList;
