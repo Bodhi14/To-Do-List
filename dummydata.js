@@ -1,29 +1,29 @@
-export default dummy = [
+export default dummydata = [
       {
-        name : ' Debug the IEEE Auditions Webpage',
+        name : 'Debug the IEEE Auditions Webpage',
         color: 'blue',
         todos: [
             {
             title : "Debug the Carousel Part",
-            completed : "false"
+            completed : false
             },
             {
                 title : "Make the webpage responsive",
-                completed : "true"
+                completed : false
             }
         ]
       },
       {
-            name : ' Configuring the Django Portfolio',
-            color: 'blue',
+            name : 'Configuring the Django Portfolio',
+            color: 'purple',
             todos: [
                 {
                 title : "Edit the information",
-                completed : "false"
+                completed : false
                 },
                 {
                     title : "Deploying it",
-                    completed : "true"
+                    completed : true
                 }
             ]
       }

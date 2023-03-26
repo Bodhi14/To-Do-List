@@ -8,7 +8,7 @@ const ToDoList = (props) => {
     const TodosRemaining = props.list.todos.length - TodosDone;
 
   return (
-    <View style={[styles.container, {backgroundColor: list.color}]} >
+    <View style={[styles.container, {backgroundColor: props.list.color}]} >
        <Text style={styles.title}>{props.list.name}</Text>
        <View>
         <View style={{alignItems: 'center'}}>
@@ -51,4 +51,5 @@ const styles = StyleSheet.create({
         color: colors.white
     }
 });
-export default ToDoList
+
+export default ToDoList;

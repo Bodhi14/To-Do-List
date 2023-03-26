@@ -1,13 +1,27 @@
-import { FlatList, TouchableOpacity } from 'react-native';
+import React, {useState} from 'react';
+import { FlatList, Modal, TouchableOpacity } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { View, Text, StyleSheet } from 'react-native';
 import colors from './colors';
 import dummydata from './dummydata';
 import ToDoList from './components/ToDoList/ToDoList';
+import AddModalList from './components/AddModalList/AddModalList';
 
 export default function App() {
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const toggleModal = () => {
+    setModalVisible(!modalVisible);
+  };
+
   return (
     <View style={styles.container}>
+      <Modal
+      animationType='slide' 
+      visible={modalVisible} 
+      onRequestClose={toggleModal}>
+        <AddModalList closeModal={toggleModal} />
+      </Modal>
       <View style={{flexDirection: 'row'}}>
         <View style={styles.separator} />
         <Text style={styles.title}>
@@ -17,23 +31,23 @@ export default function App() {
       </View>
   
     <View style={{marginVertical: 40}} >
-      <TouchableOpacity style={styles.addList}>
-        <AntDesign name="plus" size={20} color={colors.white} />
+      <TouchableOpacity style={styles.addList} onPress={toggleModal}>
+        <AntDesign name="plus" size={20} color={colors.lightBlue} />
       </TouchableOpacity>
       <Text style={styles.add}>Add List</Text>
       </View>
 
-      <View style={{height: 10}}>
+      <View style={{height: '40%'}}>
         <FlatList 
         data={dummydata} 
-        keyExtractor={(item) => (item.name)} 
+        keyExtractor={item => item.name} 
         horizontal={true} 
         showsHorizontalScrollIndicator={false} 
         renderItem={
-          (item) => {
-            return ( 
+          ({item}) => {
+            return(
               <ToDoList list={item} />
-            )
+            );
           }
         }/>
       </View>
@@ -44,7 +58,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'black',
+    backgroundColor: colors.white,
     alignItems: 'center',
     justifyContent: 'center',
   },
