@@ -1,5 +1,6 @@
 const dummydata = [
       {
+        id: 1,
         name : 'Debug the IEEE Auditions Webpage',
         color: 'blue',
         todos: [
@@ -14,6 +15,7 @@ const dummydata = [
         ]
       },
       {
+            id : 2,
             name : 'Configuring the Django Portfolio',
             color: 'purple',
             todos: [

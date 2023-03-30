@@ -1,23 +1,48 @@
 import { AntDesign, Ionicons } from '@expo/vector-icons';
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Modal, SafeAreaView, TouchableOpacity, FlatList, KeyboardAvoidingView, TextInput } from 'react-native';
+import { View, Text, StyleSheet, Modal, SafeAreaView, TouchableOpacity, FlatList, KeyboardAvoidingView, TextInput, Keyboard } from 'react-native';
 
 const ToDoModal = (props) => {
 
+  const [newTodo, SetnewToDo] = useState("");
   
-  const [name, SetName] = useState(props.list.name);
-  const [color, SetColor] = useState(props.list.color);
-  const [todos, SetTodos] = useState(props.list.todos);
+  const name = props.list.name;
+  const color = props.list.color;
+  const todos = props.list.todos;
 
   const task_count = todos.length;
   const completed_count = todos.filter(todo => todo.completed).length;
 
-  const rendertodo = (todo) => {
+
+  const addNewTodo = () => {
+    let list = props.list;
+    list.todos.push({
+      title: newTodo,
+      completed: false
+    });
+    props.updateList(list);
+    SetnewToDo("");
+
+
+    Keyboard.dismiss();
+  }
+
+
+  const toggleCompletion = (index) => {
+    let list = props.list;
+
+    list.todos[index].completed = !list.todos[index].completed;
+
+
+    props.updateList(list);
+  }
+
+  const rendertodo = (todo, index) => {
     return (
         <View styles={styles.ToDoContainer}>
-            <TouchableOpacity style={{ flexDirection: 'row'}}>
-                <Ionicons name={todo.completed ? "ios-square" : "ios-square-outline" } size={24} color='gray' style={{ width: 32}} />
-                <Text style={[styles.todo, {textDecorationLine: todo.completed ? 'line-through' : 'none', color: todo.completed ? '#808080' : 'black' }]}>
+            <TouchableOpacity style={{ flexDirection: 'row'}} onPress={() => toggleCompletion(index)}>
+                <Ionicons name={todo.completed ? "ios-square" : "ios-square-outline" } size={24} color='#808080' style={{ width: 32}} />
+                <Text style={[styles.Todo, {textDecorationLine: todo.completed ? 'line-through' : 'none', color: todo.completed ? '#808080' : 'black' }]}>
                 {todo.title}
                 </Text>
             </TouchableOpacity>
@@ -42,7 +67,7 @@ const ToDoModal = (props) => {
 
        <View style={[styles.section, {flex: 2}]}>
         <FlatList data={todos}
-         renderItem={({item}) => rendertodo(item)} 
+         renderItem={({item, index}) => rendertodo(item, index)} 
          keyExtractor={(item)=> item.title}
          contentContainerStyle={{paddingHorizontal: 32, paddingVertical: 64}} 
          showsVerticalScrollIndicator={false}
@@ -50,8 +75,8 @@ const ToDoModal = (props) => {
        </View>
        
        <View style={[styles.section, styles.footer]} behavior="padding">
-         <TextInput style={[styles.input, {borderColor: color}]} />
-         <TouchableOpacity style={[styles.addTodo, {backgroundColor: color}]}>
+         <TextInput style={[styles.input, {borderColor: color}]} onChangeText={(text) => SetnewToDo(text)} value={newTodo} />
+         <TouchableOpacity style={[styles.addTodo, {backgroundColor: color}]} onPress={addNewTodo}>
             <AntDesign name="plus" size={24} color='white' />
         </TouchableOpacity>
        </View>
@@ -82,11 +107,12 @@ const styles = StyleSheet.create({
         paddingRight: 4,
         fontSize: 15,
         fontWeight: 'bold',
-        color: '#808080',
+        color: 'black',
     },
     task_count: {
         marginTop: 4,
-        marginBottom: 16
+        marginBottom: 16,
+        color: '#808080'
     },
     footer: {
         paddingHorizontal: 32,
@@ -113,7 +139,7 @@ const styles = StyleSheet.create({
          alignItems: 'center',
          justifyContent: 'space-between',
     },
-    todo: {
+    Todo: {
         flexDirection: 'row',
         fontSize: 16,
         fontWeight: 'bold',

@@ -17,7 +17,15 @@ export default function App() {
   };
 
   const addNewList = (list) => {
-    setLists([...lists, list]);
+    setLists([...lists, {...list, id: lists.length+1}]);
+  }
+
+  const updatelist = (list) => {
+    setLists(
+      lists.map(item => {
+        return item.id === list.id ? list : item;
+      })
+    )
   }
 
   
@@ -54,10 +62,12 @@ export default function App() {
         renderItem={
           ({item}) => {
             return(
-              <ToDoList list={item} />
+              <ToDoList list={item} updateList={updatelist} />
             );
           }
-        }/>
+        }
+        keyboardShouldPersistTaps="always" 
+        />
       </View>
       <View style={{flexDirection: 'row', height: '8%', marginTop: 'auto', backgroundColor: 'black', width: '100%', justifyContent: 'center', alignItems: 'center'}}>
       <Text style={{color: 'white', fontWeight: 'bold' }}>&#169; 2023, Made by Bodhisattwa Das</Text>

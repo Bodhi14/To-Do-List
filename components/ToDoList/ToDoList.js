@@ -18,7 +18,7 @@ const ToDoList = (props) => {
   return (
     <View>
         <Modal animationType='slide' visible={isToDoModalVisible} onRequestClose={toggleToDoModal}>
-            <ToDoModal list={props.list} closeModal={toggleToDoModal}/>
+            <ToDoModal list={props.list} closeModal={toggleToDoModal} updateList={props.updateList} />
         </Modal>
             <TouchableOpacity style={[styles.container, {backgroundColor: props.list.color}]} onPress={toggleToDoModal}>
             <Text style={styles.title}>{props.list.name}</Text>
@@ -40,12 +40,13 @@ const ToDoList = (props) => {
 
 const styles = StyleSheet.create({
     container: {
-        paddingVertical: 32,
-        paddingHorizontal: 16,
-        borderRadius: 6,
+        paddingVertical: 22,
+        paddingHorizontal: 6,
+        borderRadius: 8,
         marginHorizontal: 12,
+        justifyContent: 'space-evenly',
         alignItems: "center",
-        width: 200
+        width: 165
     },
     title: {
         fontSize: 20,

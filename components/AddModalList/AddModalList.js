@@ -27,7 +27,7 @@ const AddModalList = (props) => {
         return bgcolors.map(
             (color) => {
                 return (
-                    <TouchableOpacity key={color} style={[styles.colorpicker, {backgroundColor: color}]} onPress={() => setColor(color)}></TouchableOpacity>
+                    <TouchableOpacity key={color} style={[styles.colorpicker, {backgroundColor: color}]} onPress={() => setColor(color)} />
                 );
             }
         );
