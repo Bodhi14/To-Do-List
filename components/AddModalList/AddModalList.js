@@ -13,13 +13,14 @@ const AddModalList = (props) => {
     const [Color, setColor] = useState(bgcolors[0]);
 
     const createToDo = () => {
-        dummydata.push(
-            {
-            Name,
-            Color,
-            todos: [],
-            }
-        )
+        const list = {
+            name: Name,
+            color: Color,
+            todos: []
+        };
+
+        props.addLists(list);
+        setName("");
     };
     
   return (
@@ -47,8 +48,6 @@ const AddModalList = (props) => {
             <Text style={{ color: colors.white, fontWeight: '600', fontSize: 20}}>Create</Text>
         </TouchableOpacity>
     </View>
-
-
     </KeyboardAvoidingView>
   )
 };
@@ -91,7 +90,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
     },
     create: {
-        marginTop: 24,
+        marginTop: 4,
         height: 50, 
         borderRadius: 6,
         alignItems: 'center',
@@ -100,7 +99,7 @@ const styles = StyleSheet.create({
     colorpicker: {
          flexDirection: 'row',
          justifyContent: 'center',
-         marginTop: 12
+         marginTop: 2
     },
     colorselect : {
         alignItems: 'center'

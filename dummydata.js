@@ -14,6 +14,7 @@ export default dummydata = [
         ]
       },
       {
+            
             name : 'Configuring the Django Portfolio',
             color: 'purple',
             todos: [

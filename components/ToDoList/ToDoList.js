@@ -1,25 +1,38 @@
-import * as React from 'react';
-import { View, Text, StyleSheet} from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, Modal} from 'react-native';
 import colors from '../../colors';
+import ToDoModal from '../ToDoModal/ToDoModal';
 
 const ToDoList = (props) => {
 
+    
     const TodosDone = props.list.todos.filter((todo) => todo.completed).length;
     const TodosRemaining = props.list.todos.length - TodosDone;
 
+    const [isToDoModalVisible, settoDoModalVisible] = useState(false)
+    
+
+    const toggleToDoModal = () => { 
+        settoDoModalVisible(!isToDoModalVisible)
+    }
   return (
-    <View style={[styles.container, {backgroundColor: props.list.color}]} >
-       <Text style={styles.title}>{props.list.name}</Text>
-       <View>
-        <View style={{alignItems: 'center'}}>
-            <Text style={styles.count}>{TodosRemaining}</Text>
-            <Text style={styles.subtitle}>Remaining</Text>
-        </View>
-        <View style={{alignItems: 'center'}}>
-            <Text style={styles.count}>{TodosDone}</Text>
-            <Text style={styles.subtitle}>Completed</Text>
-        </View>
-    </View>
+    <View>
+        <Modal animationType='slide' visible={isToDoModalVisible} onRequestClose={toggleToDoModal}>
+            <ToDoModal list={props.list} closeModal={toggleToDoModal} updateList={props.updateList} />
+        </Modal>
+            <TouchableOpacity style={[styles.container, {backgroundColor: props.list.color}]} onPress={toggleToDoModal}>
+            <Text style={styles.title}>{props.list.name}</Text>
+                <View>
+                    <View style={{alignItems: 'center'}}>
+                        <Text style={styles.count}>{TodosRemaining}</Text>
+                        <Text style={styles.subtitle}>Remaining</Text>
+                    </View>
+                    <View style={{alignItems: 'center'}}>
+                        <Text style={styles.count}>{TodosDone}</Text>
+                        <Text style={styles.subtitle}>Completed</Text>
+                    </View>
+                </View>
+            </TouchableOpacity>
     </View>
     
   )

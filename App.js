@@ -9,18 +9,34 @@ import AddModalList from './components/AddModalList/AddModalList';
 
 export default function App() {
   const [modalVisible, setModalVisible] = useState(false);
+  const [lists, setLists] = useState(dummydata);
+  
 
   const toggleModal = () => {
     setModalVisible(!modalVisible);
   };
 
+  const addNewList = (list) => {
+    setLists([...lists, list]);
+  }
+
+
+  const updatelist = (list) => {
+        setLists(lists.map(item => {
+          if(item.name === list.name){
+            return list;
+          }
+        }))
+  }
+
+  
   return (
     <View style={styles.container}>
       <Modal
       animationType='slide' 
       visible={modalVisible} 
       onRequestClose={toggleModal}>
-        <AddModalList closeModal={toggleModal} />
+        <AddModalList closeModal={toggleModal} addLists={addNewList} />
       </Modal>
       <View style={{flexDirection: 'row'}}>
         <View style={styles.separator} />
@@ -28,7 +44,7 @@ export default function App() {
         Todo<Text style={{ fontWeight: 'bold', color: colors.orange2 }}> Lists</Text> 
       </Text>
       <View style={styles.separator} />
-      </View>
+    </View>
   
     <View style={{marginVertical: 40}} >
       <TouchableOpacity style={styles.addList} onPress={toggleModal}>
@@ -39,14 +55,16 @@ export default function App() {
 
       <View style={{height: '40%'}}>
         <FlatList 
-        data={dummydata} 
+        data={lists} 
         keyExtractor={item => item.name} 
         horizontal={true} 
         showsHorizontalScrollIndicator={false} 
         renderItem={
           ({item}) => {
             return(
-              <ToDoList list={item} />
+              <ToDoList list={item}
+              updateList={updatelist} 
+              />
             );
           }
         }/>
