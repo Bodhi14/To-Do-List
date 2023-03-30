@@ -20,15 +20,6 @@ export default function App() {
     setLists([...lists, list]);
   }
 
-
-  const updatelist = (list) => {
-        setLists(lists.map(item => {
-          if(item.name === list.name){
-            return list;
-          }
-        }))
-  }
-
   
   return (
     <View style={styles.container}>
@@ -52,6 +43,7 @@ export default function App() {
       </TouchableOpacity>
       <Text style={styles.add}>Add List</Text>
       </View>
+      
 
       <View style={{height: '40%'}}>
         <FlatList 
@@ -62,12 +54,13 @@ export default function App() {
         renderItem={
           ({item}) => {
             return(
-              <ToDoList list={item}
-              updateList={updatelist} 
-              />
+              <ToDoList list={item} />
             );
           }
         }/>
+      </View>
+      <View style={{flexDirection: 'row', height: '8%', marginTop: 'auto', backgroundColor: 'black', width: '100%', justifyContent: 'center', alignItems: 'center'}}>
+      <Text style={{color: 'white', fontWeight: 'bold' }}>&#169; 2023, Made by Bodhisattwa Das</Text>
       </View>
     </View>
   );

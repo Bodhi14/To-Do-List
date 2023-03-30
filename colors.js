@@ -1,4 +1,4 @@
-export default colors = {
+const colors = {
     orange1: '#F6A21E',
     orange2: '#E55B13',
     lightBlue: '#ADD8E6',
@@ -8,3 +8,6 @@ export default colors = {
     yellow: '#ffeb3b',
     orange: '#ff9800',
 };
+
+
+export default colors;

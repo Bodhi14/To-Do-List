@@ -18,7 +18,7 @@ const ToDoList = (props) => {
   return (
     <View>
         <Modal animationType='slide' visible={isToDoModalVisible} onRequestClose={toggleToDoModal}>
-            <ToDoModal list={props.list} closeModal={toggleToDoModal} updateList={props.updateList} />
+            <ToDoModal list={props.list} closeModal={toggleToDoModal}/>
         </Modal>
             <TouchableOpacity style={[styles.container, {backgroundColor: props.list.color}]} onPress={toggleToDoModal}>
             <Text style={styles.title}>{props.list.name}</Text>

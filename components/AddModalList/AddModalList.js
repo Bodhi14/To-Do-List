@@ -3,11 +3,10 @@ import React, {useState} from 'react';
 
 import { View, Text, StyleSheet, KeyboardAvoidingView, TouchableOpacity, TextInput } from 'react-native';
 import colors from '../../colors';
-import dummydata from '../../dummydata';
 
 const AddModalList = (props) => {
     
-    const bgcolors = ["blue", "red", "green", "orange", "yellow" ];
+    const bgcolors = ["blue", "red", "green", "orange", "yellow"];
 
     const [Name, setName] = useState("");
     const [Color, setColor] = useState(bgcolors[0]);
@@ -21,7 +20,18 @@ const AddModalList = (props) => {
 
         props.addLists(list);
         setName("");
+        props.closeModal();
     };
+
+    const renderColors = () => {
+        return bgcolors.map(
+            (color) => {
+                return (
+                    <TouchableOpacity key={color} style={[styles.colorpicker, {backgroundColor: color}]} onPress={() => setColor(color)}></TouchableOpacity>
+                );
+            }
+        );
+    }
     
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding">
@@ -33,18 +43,10 @@ const AddModalList = (props) => {
 
         <TextInput style={styles.input} placeholder="List Name" onChangeText={text => setName(text)} />
 
-        <View style={styles.colorpicker}>
-            {
-                 bgcolors.map(
-                    (color) => {
-                        return (
-                        <TouchableOpacity key={color} style={[styles.colorselect, {backgroundColor: color}]} onPress={() => setColor(color)}></TouchableOpacity>
-                    );
-                }
-                   )
-            }
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 5}}>
+        {renderColors()}
         </View>
-        <TouchableOpacity style={[styles.new, {backgroundColor: "blue"}]} onPress={createToDo}>
+        <TouchableOpacity style={[styles.new, {backgroundColor: Color}]} onPress={createToDo}>
             <Text style={{ color: colors.white, fontWeight: '600', fontSize: 20}}>Create</Text>
         </TouchableOpacity>
     </View>
@@ -97,12 +99,10 @@ const styles = StyleSheet.create({
         
     },
     colorpicker: {
+         width: 20,
+         height: 20,
          flexDirection: 'row',
-         justifyContent: 'center',
-         marginTop: 2
-    },
-    colorselect : {
-        alignItems: 'center'
+         borderRadius: 4
     },
 })
 export default AddModalList;

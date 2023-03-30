@@ -1,4 +1,4 @@
-export default dummydata = [
+const dummydata = [
       {
         name : 'Debug the IEEE Auditions Webpage',
         color: 'blue',
@@ -14,7 +14,6 @@ export default dummydata = [
         ]
       },
       {
-            
             name : 'Configuring the Django Portfolio',
             color: 'purple',
             todos: [
@@ -29,3 +28,5 @@ export default dummydata = [
             ]
       }
 ];
+
+export default dummydata;
