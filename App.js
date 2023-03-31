@@ -1,15 +1,46 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { FlatList, Modal, TouchableOpacity } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { View, Text, StyleSheet } from 'react-native';
 import colors from './colors';
-import dummydata from './dummydata';
 import ToDoList from './components/ToDoList/ToDoList';
 import AddModalList from './components/AddModalList/AddModalList';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/firestore';
+import firebaseConfig from './Firebase';
 
 export default function App() {
+
   const [modalVisible, setModalVisible] = useState(false);
-  const [lists, setLists] = useState(dummydata);
+  const [lists, setLists] = useState([]);
+
+  useEffect(() => {
+    firebase.initializeApp(firebaseConfig);
+    firebase.firestore().collection('users').doc('ILbzmn44hlGJVQr6qCnt').collection('lists').get().then(
+      snap => {
+        snap.forEach((s) => {
+
+          
+          setLists([...lists, {
+            id: lists.length + 1,
+            name: s.data().name,
+            color: s.data().color,
+            todos: s.data().todos
+           }]);
+
+           lists.push({
+            id: lists.length + 1,
+            name: s.data().name,
+            color: s.data().color,
+            todos: s.data().todos
+           })
+
+
+           console.log(lists);
+        }) 
+      }
+    );
+  }, [])
   
 
   const toggleModal = () => {
@@ -41,7 +72,7 @@ export default function App() {
         <View style={styles.separator} />
         <Text style={styles.title}>
         Todo<Text style={{ fontWeight: 'bold', color: colors.orange2 }}> Lists</Text> 
-      </Text>
+        </Text>
       <View style={styles.separator} />
     </View>
   
@@ -53,7 +84,7 @@ export default function App() {
       </View>
       
 
-      <View style={{height: '40%'}}>
+      <View style={{height: '55%'}}>
         <FlatList 
         data={lists} 
         keyExtractor={item => item.name} 
@@ -70,7 +101,7 @@ export default function App() {
         />
       </View>
       <View style={{flexDirection: 'row', height: '8%', marginTop: 'auto', backgroundColor: 'black', width: '100%', justifyContent: 'center', alignItems: 'center'}}>
-      <Text style={{color: 'white', fontWeight: 'bold' }}>&#169; 2023, Made by Bodhisattwa Das</Text>
+      <Text style={{color: 'white', fontWeight: 'bold', fontSize: '100%' }}>&#169; 2023, Made by Bodhisattwa Das</Text>
       </View>
     </View>
   );

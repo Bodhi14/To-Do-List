@@ -1,6 +1,8 @@
 import { AntDesign, Ionicons } from '@expo/vector-icons';
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Modal, SafeAreaView, TouchableOpacity, FlatList, KeyboardAvoidingView, TextInput, Keyboard } from 'react-native';
+import { View, Text, StyleSheet, Modal, SafeAreaView, Animated, TouchableOpacity, FlatList, KeyboardAvoidingView, TextInput, Keyboard } from 'react-native';
+import { Swipeable } from 'react-native-gesture-handler';
+import colors from '../../colors';
 
 const ToDoModal = (props) => {
 
@@ -37,8 +39,29 @@ const ToDoModal = (props) => {
     props.updateList(list);
   }
 
+
+  const deleteToDo = (index) => {
+    let list = props.list;
+    list.todos.splice(index, 1);
+    props.updateList(list);
+  }
+
+  const rightActions = (index) => {
+
+    return (
+     <TouchableOpacity onPress={() => {deleteToDo(index)}}>
+         <Animated.View style={styles.deleteButton}>
+             <Animated.Text style={{ color: 'white'}}>
+                Delete
+             </Animated.Text>
+         </Animated.View>
+     </TouchableOpacity>
+    )
+   }
+
   const rendertodo = (todo, index) => {
     return (
+        <Swipeable renderRightActions={() => rightActions(index)}>
         <View styles={styles.ToDoContainer}>
             <TouchableOpacity style={{ flexDirection: 'row'}} onPress={() => toggleCompletion(index)}>
                 <Ionicons name={todo.completed ? "ios-square" : "ios-square-outline" } size={24} color='#808080' style={{ width: 32}} />
@@ -47,8 +70,12 @@ const ToDoModal = (props) => {
                 </Text>
             </TouchableOpacity>
         </View>
+        </Swipeable>
     )
   }
+
+
+  
   return (
     <KeyboardAvoidingView>
     <SafeAreaView style={styles.container}>
@@ -98,14 +125,14 @@ const styles = StyleSheet.create({
     },
     header: {
         justifyContent: 'flex-end',
-        marginLeft: 64,
+        marginLeft: 30,
         borderBottomWidth: 3
     },
     title: {
         marginTop: 5,
         marginRight: 6,
         paddingRight: 4,
-        fontSize: 15,
+        fontSize: 16,
         fontWeight: 'bold',
         color: 'black',
     },
@@ -144,6 +171,14 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: 'bold',
         color: '#808080',
+    },
+    deleteButton : {
+        flex: 1,
+        borderRadius: 6,
+        backgroundColor: 'red',
+        justifyContent: 'center',
+        alignItems : 'center',
+        width: 80
     }
 
 })

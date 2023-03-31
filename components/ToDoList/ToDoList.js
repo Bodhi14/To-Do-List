@@ -40,13 +40,15 @@ const ToDoList = (props) => {
 
 const styles = StyleSheet.create({
     container: {
+        marginLeft: 20,
+        height: '80%',
         paddingVertical: 22,
-        paddingHorizontal: 6,
+        paddingHorizontal: 16,
         borderRadius: 8,
         marginHorizontal: 12,
         justifyContent: 'space-evenly',
         alignItems: "center",
-        width: 165
+        width: '40vw'
     },
     title: {
         fontSize: 20,

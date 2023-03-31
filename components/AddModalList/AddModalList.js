@@ -3,6 +3,9 @@ import React, {useState} from 'react';
 
 import { View, Text, StyleSheet, KeyboardAvoidingView, TouchableOpacity, TextInput } from 'react-native';
 import colors from '../../colors';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/firestore';
+import firebaseConfig from '../../Firebase';
 
 const AddModalList = (props) => {
     
@@ -12,6 +15,19 @@ const AddModalList = (props) => {
     const [Color, setColor] = useState(bgcolors[0]);
 
     const createToDo = () => {
+
+        firebase.initializeApp(firebaseConfig);
+
+        firebase.firestore().collection('users').doc('ILbzmn44hlGJVQr6qCnt').collection('lists').add(
+            {
+                name: Name,
+                color: Color,
+                todos: []
+            }
+        ).then(
+            console.log('Data added successfully')
+        )
+
         const list = {
             name: Name,
             color: Color,
