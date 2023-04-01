@@ -84,12 +84,12 @@ export default function App() {
       </View>
       
 
-      <View style={{height: '55%'}}>
+      <View style={{height: '55%', marginLeft: 5}}>
         <FlatList 
         data={lists} 
         keyExtractor={item => item.name} 
-        horizontal={true} 
-        showsHorizontalScrollIndicator={false} 
+        vertical={true} 
+        showsVerticalScrollIndicator={false} 
         renderItem={
           ({item}) => {
             return(
@@ -100,7 +100,7 @@ export default function App() {
         keyboardShouldPersistTaps="always" 
         />
       </View>
-      <View style={{flexDirection: 'row', height: '8%', marginTop: 'auto', backgroundColor: 'black', width: '100%', justifyContent: 'center', alignItems: 'center'}}>
+      <View style={{flexDirection: 'row', height: '8%', marginTop: 'auto', backgroundColor: 'black', width: '100vw', justifyContent: 'center', alignItems: 'center'}}>
       <Text style={{color: 'white', fontWeight: 'bold', fontSize: '100%' }}>&#169; 2023, Made by Bodhisattwa Das</Text>
       </View>
     </View>
