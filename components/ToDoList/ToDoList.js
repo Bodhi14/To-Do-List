@@ -41,12 +41,13 @@ const ToDoList = (props) => {
 const styles = StyleSheet.create({
     container: {
         height: '90%',
+        marginRight: 5,
         paddingVertical: 22,
         paddingHorizontal: 16,
         borderRadius: 8,
         justifyContent: 'center',
         alignItems: "center",
-        width: '90vw'
+        width: '95vw'
     },
     title: {
         fontSize: 20,
