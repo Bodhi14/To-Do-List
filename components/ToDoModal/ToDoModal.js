@@ -3,6 +3,9 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, Modal, SafeAreaView, Animated, TouchableOpacity, FlatList, KeyboardAvoidingView, TextInput, Keyboard } from 'react-native';
 import { Swipeable } from 'react-native-gesture-handler';
 import colors from '../../colors';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/firestore';
+import firebaseConfig from '../../Firebase';
 
 const ToDoModal = (props) => {
 
@@ -77,26 +80,29 @@ const ToDoModal = (props) => {
 
   
   return (
-    <KeyboardAvoidingView>
+    <KeyboardAvoidingView style={{flex: 1}} behaviour="padding">
     <SafeAreaView style={styles.container}>
-        <TouchableOpacity style={{position: 'absolute', top: 30, right: 32, zIndex: 10}} onPress={
+        <TouchableOpacity style={{position: 'absolute', top: 40, right: 32, zIndex: 10}} onPress={
             props.closeModal
         }
         >
         <AntDesign name='close' size={24} color='black' />
         </TouchableOpacity>
-       <View style={[styles.section, styles.header, {borderBottomColor: color}]}>
+        
+        <View style={[styles.section, styles.header, {borderBottomColor: color}]}>
         <View>
             <Text style={styles.title}>{name}</Text>
             <Text style={styles.task_count}>{completed_count} of {task_count} tasks</Text>
         </View>
        </View>
+     
+      
 
-       <View style={[styles.section, {flex: 2}]}>
+       <View style={[styles.section, {flex: 1, marginLeft: 30}]}>
         <FlatList data={todos}
          renderItem={({item, index}) => rendertodo(item, index)} 
          keyExtractor={(item)=> item.title}
-         contentContainerStyle={{paddingHorizontal: 32, paddingVertical: 64}} 
+         contentContainerStyle={{marginLeft: 32}} 
          showsVerticalScrollIndicator={false}
          />
        </View>
@@ -120,7 +126,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#F5FCFF',
     },
     section: {
-        flex: 1,
         alignSelf: 'stretch',
     },
     header: {
@@ -129,16 +134,18 @@ const styles = StyleSheet.create({
         borderBottomWidth: 3
     },
     title: {
-        marginTop: 5,
+        paddingTop: 60,
         marginRight: 6,
         paddingRight: 4,
-        fontSize: 16,
+        fontSize: 20,
+        position: 'sticky',
         fontWeight: 'bold',
         color: 'black',
     },
     task_count: {
         marginTop: 4,
         marginBottom: 16,
+        position: 'sticky',
         color: '#808080'
     },
     footer: {

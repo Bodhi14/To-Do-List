@@ -9,7 +9,7 @@ const ToDoList = (props) => {
     const TodosDone = props.list.todos.filter((todo) => todo.completed).length;
     const TodosRemaining = props.list.todos.length - TodosDone;
 
-    const [isToDoModalVisible, settoDoModalVisible] = useState(false)
+    const [isToDoModalVisible, settoDoModalVisible] = useState(false);
     
 
     const toggleToDoModal = () => { 

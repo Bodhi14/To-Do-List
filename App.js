@@ -16,31 +16,24 @@ export default function App() {
 
   useEffect(() => {
     firebase.initializeApp(firebaseConfig);
-    firebase.firestore().collection('users').doc('ILbzmn44hlGJVQr6qCnt').collection('lists').get().then(
-      snap => {
-        snap.forEach((s) => {
+    const listsRef = firebase
+      .firestore()
+      .collection('users')
+      .doc('ILbzmn44hlGJVQr6qCnt')
+      .collection('lists');
 
-          
-          setLists([...lists, {
-            id: lists.length + 1,
-            name: s.data().name,
-            color: s.data().color,
-            todos: s.data().todos
-           }]);
+    listsRef.get().then((snap) => {
+      const fetchedLists = snap.docs.map((doc) => ({
+        id: doc.id,
+        name: doc.data().name,
+        color: doc.data().color,
+        todos: doc.data().todos,
+      }));
 
-           lists.push({
-            id: lists.length + 1,
-            name: s.data().name,
-            color: s.data().color,
-            todos: s.data().todos
-           })
-
-
-           console.log(lists);
-        }) 
-      }
-    );
-  }, [])
+      setLists(fetchedLists); 
+    });
+  }, []);
+  
   
 
   const toggleModal = () => {
@@ -48,16 +41,57 @@ export default function App() {
   };
 
   const addNewList = (list) => {
-    setLists([...lists, {...list, id: lists.length+1}]);
-  }
+    // Add the new list to the Firebase database
+    firebase
+      .firestore()
+      .collection('users')
+      .doc('ILbzmn44hlGJVQr6qCnt')
+      .collection('lists')
+      .add({
+        name: list.name,
+        color: list.color,
+        todos: list.todos,
+      })
+      .then((docRef) => {
+        console.log('List added successfully with ID:', docRef.id);
+        
+        setLists((prevLists) => [
+          ...prevLists,
+          { ...list, id: docRef.id }, 
+        ]);
+      })
+      .catch((error) => {
+        console.error('Error adding list:', error);
+      });
+  };
+  
 
   const updatelist = (list) => {
-    setLists(
-      lists.map(item => {
-        return item.id === list.id ? list : item;
+    
+    firebase
+      .firestore()
+      .collection('users')
+      .doc('ILbzmn44hlGJVQr6qCnt')
+      .collection('lists')
+      .doc(list.id)
+      .update({
+        name: list.name,
+        color: list.color,
+        todos: list.todos,
       })
-    )
-  }
+      .then(() => {
+        console.log('List updated successfully');
+      })
+      .catch((error) => {
+        console.error('Error updating list:', error);
+      });
+  
+    
+    setLists((prevLists) =>
+      prevLists.map((item) => (item.id === list.id ? list : item))
+    );
+  };
+  
 
   
   return (
