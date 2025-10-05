@@ -19,7 +19,7 @@ export default function App() {
     const listsRef = firebase
       .firestore()
       .collection('users')
-      .doc('ILbzmn44hlGJVQr6qCnt')
+      .doc('B5zaFWrBoE2YK4UGYTaW')
       .collection('lists');
 
     listsRef.get().then((snap) => {
@@ -71,7 +71,7 @@ export default function App() {
     firebase
       .firestore()
       .collection('users')
-      .doc('ILbzmn44hlGJVQr6qCnt')
+      .doc('B5zaFWrBoE2YK4UGYTaW')
       .collection('lists')
       .doc(list.id)
       .update({
