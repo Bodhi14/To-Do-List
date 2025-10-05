@@ -18,7 +18,7 @@ const AddModalList = (props) => {
 
         firebase.initializeApp(firebaseConfig);
 
-        firebase.firestore().collection('users').doc('ILbzmn44hlGJVQr6qCnt').collection('lists').add(
+        firebase.firestore().collection('users').doc('B5zaFWrBoE2YK4UGYTaW').collection('lists').add(
             {
                 name: Name,
                 color: Color,
