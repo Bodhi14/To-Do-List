@@ -1,21 +1,15 @@
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
-import { getDatabase } from 'firebase/database';
-import firestore from '@react-native-firebase/firestore';
-
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBdSFs1TzxEHTuz8RhCkBLLREcZ82mrI_M",
-    authDomain: "todoapp-2bd7a.firebaseapp.com",
-    projectId: "todoapp-2bd7a",
-    storageBucket: "todoapp-2bd7a.appspot.com",
-    messagingSenderId: "794216854709",
-    appId: "1:794216854709:web:806339d6b5c05fea2ebafc",
-    measurementId: "G-L2HL7214Y5"
-  };
+  apiKey: "AIzaSyAOj_uPr_IrH4kkt8jpO6Hdvjtl3XSBYFA",
+  authDomain: "to-do-76408.firebaseapp.com",
+  projectId: "to-do-76408",
+  storageBucket: "to-do-76408.firebasestorage.app",
+  messagingSenderId: "879383042855",
+  appId: "1:879383042855:web:22a3e816de36a159976702",
+  measurementId: "G-H689XVK831"
+};
 
-export default firebaseConfig;
-
-
-
-  
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
