@@ -44,7 +44,7 @@ export default function App() {
     firebase
       .firestore()
       .collection('users')
-      .doc('ILbzmn44hlGJVQr6qCnt')
+      .doc('B5zaFWrBoE2YK4UGYTaW')
       .collection('lists')
       .add({
         name: list.name,
