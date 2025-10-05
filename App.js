@@ -41,7 +41,6 @@ export default function App() {
   };
 
   const addNewList = (list) => {
-    // Add the new list to the Firebase database
     firebase
       .firestore()
       .collection('users')
