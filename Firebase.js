@@ -1,7 +1,7 @@
-import firebase from "firebase";
-import "@firebase/firestore";
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import { getDatabase } from 'firebase/database';
+import firestore from '@react-native-firebase/firestore';
 
 const firebaseConfig = {
   apiKey: "AIzaSyAOj_uPr_IrH4kkt8jpO6Hdvjtl3XSBYFA",
@@ -13,19 +13,4 @@ const firebaseConfig = {
   measurementId: "G-H689XVK831"
 };
 
-class Fire {
-  init() {
-    if(!firebase.apps.length) {
-      firebase.initializeApp(firebaseConfig);
-    }
-
-    firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-      } else {
-        firebase.auth().signInAnonymously().catch(error => {});
-      }
-    }
-  }
-}
-
-export default Fire;
+export default firebaseConfig;
