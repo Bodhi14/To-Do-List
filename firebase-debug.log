@@ -1,0 +1,108 @@
+[debug] [2025-10-05T11:45:55.940Z] ----------------------------------------------------------------------
+[debug] [2025-10-05T11:45:55.942Z] Command:       /usr/local/share/nvm/versions/node/v22.17.0/bin/node /home/codespace/nvm/current/bin/firebase init
+[debug] [2025-10-05T11:45:55.942Z] CLI Version:   14.18.0
+[debug] [2025-10-05T11:45:55.943Z] Platform:      linux
+[debug] [2025-10-05T11:45:55.943Z] Node Version:  v22.17.0
+[debug] [2025-10-05T11:45:55.943Z] Time:          Sun Oct 05 2025 11:45:55 GMT+0000 (Coordinated Universal Time)
+[debug] [2025-10-05T11:45:55.943Z] Env Overrides: GITHUB_API_URL, GITHUB_API_URL
+[debug] [2025-10-05T11:45:55.944Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-10-05T11:45:55.951Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-10-05T11:45:55.951Z] > authorizing via signed-in user (bodhi140802@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /workspaces/To-Do-List
+
+Before we get started, keep in mind:
+
+  * You are currently outside your home directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2025-10-05T11:46:04.172Z] Using project from CLI flag: to-do-76408
+[debug] [2025-10-05T11:46:04.172Z] Checked if tokens are valid: true, expires at: 1759668339330
+[debug] [2025-10-05T11:46:04.173Z] Checked if tokens are valid: true, expires at: 1759668339330
+[debug] [2025-10-05T11:46:04.174Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/to-do-76408 [none]
+[debug] [2025-10-05T11:46:04.664Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/to-do-76408 200
+[debug] [2025-10-05T11:46:04.664Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/to-do-76408 {"projectId":"to-do-76408","projectNumber":"879383042855","displayName":"To-Do","name":"projects/to-do-76408","resources":{"hostingSite":"to-do-76408"},"state":"ACTIVE","etag":"1_7a09c05e-65c2-48cb-8005-da3ae6c047e1"}
+[info] i  Using project to-do-76408 (To-Do) 
+[info] 
+=== Firestore Setup
+[info] i  firestore: ensuring required API firestore.googleapis.com is enabled... 
+[debug] [2025-10-05T11:46:04.754Z] Checked if tokens are valid: true, expires at: 1759668339330
+[debug] [2025-10-05T11:46:04.754Z] Checked if tokens are valid: true, expires at: 1759668339330
+[debug] [2025-10-05T11:46:04.755Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/to-do-76408/databases [none]
+[debug] [2025-10-05T11:46:05.623Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/to-do-76408/databases 200
+[debug] [2025-10-05T11:46:05.623Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/to-do-76408/databases {"databases":[{"name":"projects/to-do-76408/databases/(default)","uid":"1a357685-e5e3-4334-8538-5180f1ab3e3c","createTime":"2025-10-05T09:18:16.876265Z","updateTime":"2025-10-05T09:18:16.876265Z","locationId":"us-west3","type":"FIRESTORE_NATIVE","concurrencyMode":"PESSIMISTIC","versionRetentionPeriod":"3600s","earliestVersionTime":"2025-10-05T10:46:05.625435Z","appEngineIntegrationMode":"DISABLED","keyPrefix":"zwm","pointInTimeRecoveryEnablement":"POINT_IN_TIME_RECOVERY_DISABLED","deleteProtectionState":"DELETE_PROTECTION_DISABLED","databaseEdition":"STANDARD","freeTier":true,"realtimeUpdatesMode":"REALTIME_UPDATES_ENABLED","etag":"IOrKh4r+jJADMKTKiovgjJAD"}]}
+[info] 
+[info] Firestore Security Rules allow you to define how and when to allow
+[info] requests. You can keep these rules in your project directory
+[info] and publish them with firebase deploy.
+[info] 
+[debug] [2025-10-05T11:46:06.132Z] Checked if tokens are valid: true, expires at: 1759668339330
+[debug] [2025-10-05T11:46:06.132Z] Checked if tokens are valid: true, expires at: 1759668339330
+[debug] [2025-10-05T11:46:06.132Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/to-do-76408/releases pageSize=10&pageToken=
+[debug] [2025-10-05T11:46:07.502Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/to-do-76408/releases 200
+[debug] [2025-10-05T11:46:07.502Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/to-do-76408/releases {"releases":[{"name":"projects/to-do-76408/releases/cloud.firestore","rulesetName":"projects/to-do-76408/rulesets/64347748-5ba7-4ac1-8427-da51a8083fd5","createTime":"2025-10-05T09:18:22.402612Z","updateTime":"2025-10-05T09:18:22.402612Z"}]}
+[debug] [2025-10-05T11:46:07.503Z] Checked if tokens are valid: true, expires at: 1759668339330
+[debug] [2025-10-05T11:46:07.503Z] Checked if tokens are valid: true, expires at: 1759668339330
+[debug] [2025-10-05T11:46:07.503Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/to-do-76408/rulesets/64347748-5ba7-4ac1-8427-da51a8083fd5 [none]
+[debug] [2025-10-05T11:46:09.010Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/to-do-76408/rulesets/64347748-5ba7-4ac1-8427-da51a8083fd5 200
+[debug] [2025-10-05T11:46:09.010Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/to-do-76408/rulesets/64347748-5ba7-4ac1-8427-da51a8083fd5 [omitted]
+[info] i  Downloaded the existing Firestore Security Rules from the Firebase console 
+[info] i  firestore.rules is unchanged 
+[info] 
+[info] Firestore indexes allow you to perform complex queries while
+[info] maintaining performance that scales with the size of the result
+[info] set. You can keep index definitions in your project directory
+[info] and publish them with firebase deploy.
+[info] 
+[debug] [2025-10-05T11:46:09.516Z] Checked if tokens are valid: true, expires at: 1759668339330
+[debug] [2025-10-05T11:46:09.516Z] Checked if tokens are valid: true, expires at: 1759668339330
+[debug] [2025-10-05T11:46:09.517Z] Checked if tokens are valid: true, expires at: 1759668339330
+[debug] [2025-10-05T11:46:09.517Z] Checked if tokens are valid: true, expires at: 1759668339330
+[debug] [2025-10-05T11:46:09.517Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/to-do-76408/databases/(default)/collectionGroups/-/indexes [none]
+[debug] [2025-10-05T11:46:09.518Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/to-do-76408/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* [none]
+[debug] [2025-10-05T11:46:11.112Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/to-do-76408/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* 200
+[debug] [2025-10-05T11:46:11.112Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/to-do-76408/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* {"fields":[{"name":"projects/to-do-76408/databases/(default)/collectionGroups/__default__/fields/*","indexConfig":{"indexes":[{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","order":"ASCENDING"}],"state":"READY"},{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","order":"DESCENDING"}],"state":"READY"},{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","arrayConfig":"CONTAINS"}],"state":"READY"}]}}]}
+[debug] [2025-10-05T11:46:11.118Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/to-do-76408/databases/(default)/collectionGroups/-/indexes 200
+[debug] [2025-10-05T11:46:11.122Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/to-do-76408/databases/(default)/collectionGroups/-/indexes {}
+[info] i  Downloaded the existing Firestore indexes from the Firebase console 
+[info] i  firestore.indexes.json is unchanged 
+[info] ✔  Wrote firestore.indexes.json 
+[info] 
+=== Hosting Setup
+[debug] [2025-10-05T11:46:11.219Z] Checked if tokens are valid: true, expires at: 1759668339330
+[debug] [2025-10-05T11:46:11.219Z] Checked if tokens are valid: true, expires at: 1759668339330
+[debug] [2025-10-05T11:46:11.219Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/to-do-76408 [none]
+[debug] [2025-10-05T11:46:11.818Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/to-do-76408 200
+[debug] [2025-10-05T11:46:11.819Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/to-do-76408 {"projectId":"to-do-76408","projectNumber":"879383042855","displayName":"To-Do","name":"projects/to-do-76408","resources":{"hostingSite":"to-do-76408"},"state":"ACTIVE","etag":"1_7a09c05e-65c2-48cb-8005-da3ae6c047e1"}
+[info] 
+[info] Your public directory is the folder (relative to your project directory) that
+[info] will contain Hosting assets to be uploaded with firebase deploy. If you
+[info] have a build process for your assets, use your build's output directory.
+[info] 
+[debug] [2025-10-05T11:46:15.219Z] >>> [apiv2][query] GET https://www.gstatic.com/firebasejs/releases.json [none]
+[debug] [2025-10-05T11:46:15.246Z] <<< [apiv2][status] GET https://www.gstatic.com/firebasejs/releases.json 200
+[debug] [2025-10-05T11:46:15.246Z] <<< [apiv2][body] GET https://www.gstatic.com/firebasejs/releases.json {"current":{"version":"12.3.0","browserURL":"https://www.gstatic.com/firebasejs/12.3.0/firebase.js","packageURL":"https://www.gstatic.com/firebasejs/12.3.0/firebase.tgz"},"live":{"version":"12.3","browserURL":"https://www.gstatic.com/firebasejs/live/12.3/firebase.js","packageURL":"https://www.gstatic.com/firebasejs/live/12.3/firebase.tgz"},"components":{"ai":"https://www.gstatic.com/firebasejs/12.3.0/firebase-ai.js","analytics":"https://www.gstatic.com/firebasejs/12.3.0/firebase-analytics.js","app":"https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js","app-check":"https://www.gstatic.com/firebasejs/12.3.0/firebase-app-check.js","auth":"https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js","auth/cordova":"https://www.gstatic.com/firebasejs/12.3.0/firebase-auth/cordova.js","auth/web-extension":"https://www.gstatic.com/firebasejs/12.3.0/firebase-auth/web-extension.js","functions":"https://www.gstatic.com/firebasejs/12.3.0/firebase-functions.js","firestore":"https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js","firestore/lite":"https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore/lite.js","installations":"https://www.gstatic.com/firebasejs/12.3.0/firebase-installations.js","storage":"https://www.gstatic.com/firebasejs/12.3.0/firebase-storage.js","performance":"https://www.gstatic.com/firebasejs/12.3.0/firebase-performance.js","remote-config":"https://www.gstatic.com/firebasejs/12.3.0/firebase-remote-config.js","messaging":"https://www.gstatic.com/firebasejs/12.3.0/firebase-messaging.js","messaging/sw":"https://www.gstatic.com/firebasejs/12.3.0/firebase-messaging/sw.js","database":"https://www.gstatic.com/firebasejs/12.3.0/firebase-database.js","data-connect":"https://www.gstatic.com/firebasejs/12.3.0/firebase-data-connect.js","firestore.memory":"https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.memory.js"}}
+[info] i  public/index.html is unchanged 
+[info] 
+[info] i  Detected a .git folder at /workspaces/To-Do-List 
+[info] i  Authorizing with GitHub to upload your service account to a GitHub repository's secrets store. 
+[info] 
+[info] Visit this URL on this device to log in:
+[info] https://github.com/login/oauth/authorize?client_id=89cf50f02ac6aaed3484&state=259935266&redirect_uri=http%3A%2F%2Flocalhost%3A9005&scope=read%3Auser%20repo%20public_repo
+[info] 
+[info] Waiting for authentication...
