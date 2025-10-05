@@ -1,3 +1,5 @@
+import firebase from "firebase";
+import "@firebase/firestore";
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 
@@ -11,5 +13,19 @@ const firebaseConfig = {
   measurementId: "G-H689XVK831"
 };
 
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+class Fire {
+  init() {
+    if(!firebase.apps.length) {
+      firebase.initializeApp(firebaseConfig);
+    }
+
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+      } else {
+        firebase.auth().signInAnonymously().catch(error => {});
+      }
+    }
+  }
+}
+
+export default Fire;
