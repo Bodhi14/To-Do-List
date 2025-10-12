@@ -1,6 +1,30 @@
 # To-Do List
 
-A simple and intuitive To-Do List web application to help you organize your tasks efficiently. Hosted at [https://to-do-76408.web.app/](https://to-do-76408.web.app/).
+A simple and intuitive To-Do List web application to help you organize your tasks efficiently.
+
+## 🚀 Live Demo
+The app is live at: [https://todo-list-latest.onrender.com/](https://todo-list-latest.onrender.com/)
+
+## 🐳 Dockerized Deployment
+This app is now fully dockerized and can be run anywhere with Docker support.
+
+### Build & Run Locally with Docker
+1. Build the Docker image:
+   ```bash
+   docker build -t bodhi140802/todo-list:latest .
+   ```
+2. Run the container:
+   ```bash
+   docker run -p 80:80 bodhi140802/todo-list:latest
+   ```
+3. Visit [http://localhost](http://localhost) in your browser.
+
+### Deploying to Render
+- Go to [Render](https://render.com/)
+- Create a new Web Service → Deploy an existing image from a registry
+- Use image: `bodhi140802/todo-list:latest`
+- Set port to `80`
+- Deploy and get your public URL!
 
 ## Features
 - Add, edit, and delete tasks
@@ -9,10 +33,7 @@ A simple and intuitive To-Do List web application to help you organize your task
 - Responsive design for mobile and desktop
 - Firebase integration for real-time data storage
 
-## Live Demo
-Visit the live app: [https://to-do-76408.web.app/](https://to-do-76408.web.app/)
-
-## Getting Started
+## Getting Started (Development)
 
 ### Prerequisites
 - Node.js
